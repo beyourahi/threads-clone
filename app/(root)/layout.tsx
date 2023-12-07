@@ -4,10 +4,7 @@ import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from "@clerk/themes";
 import "app/globals.css";
-import LeftSidebar from "components/LeftSidebar";
-import Bottombar from "components/Bottombar";
-import RightSidebar from "components/RightSidebar";
-import Topbar from "components/Topbar";
+import { LeftSidebar, Bottombar, RightSidebar, Topbar } from "components/layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
