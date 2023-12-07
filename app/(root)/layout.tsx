@@ -1,22 +1,36 @@
-import "app/globals.css";
+import React from "react";
 import type { Metadata } from "next";
-import { PropsWithChildren } from "react";
-import { cn } from "lib";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
+import "app/globals.css";
+import LeftSidebar from "components/LeftSidebar";
+import Bottombar from "components/Bottombar";
+import RightSidebar from "components/RightSidebar";
+import Topbar from "components/Topbar";
 
-const font = Inter({ subsets: ["latin"], display: "swap" });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-    title: "Web Template",
-    description: "A template to build cool shit"
+    title: "Threads",
+    description: "A Next.js 13 Meta Threads application"
 };
 
-const RootLayout = ({ children }: PropsWithChildren) => (
-    <ClerkProvider>
-        <html lang="en" className="light scroll-smooth">
-            <body className={cn("antialiased", font.className)}>
-                <main>{children}</main>
+const RootLayout = ({ children }: { children: React.ReactNode }) => (
+    <ClerkProvider appearance={{ baseTheme: dark }}>
+        <html lang="en">
+            <body className={inter.className}>
+                <Topbar />
+
+                <main className="flex flex-row">
+                    <LeftSidebar />
+                    <section className="main-container">
+                        <div className="w-full max-w-4xl">{children}</div>
+                    </section>
+                    <RightSidebar />
+                </main>
+
+                <Bottombar />
             </body>
         </html>
     </ClerkProvider>
